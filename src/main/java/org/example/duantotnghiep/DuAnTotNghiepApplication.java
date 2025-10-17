@@ -8,7 +8,6 @@ public class DuAnTotNghiepApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(DuAnTotNghiepApplication.class, args);
-        System.out.println("hello");
     }
 
 }
