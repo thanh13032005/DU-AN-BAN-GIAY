@@ -1,7 +1,7 @@
-package org.example.duantotnghiep.Controller;
+package org.example.duantotnghiep.Controller_quan;
 
-import org.example.duantotnghiep.Entity.chiTietSanPham_Entity;
-import org.example.duantotnghiep.Service.chiTietSanPham_Servidce;
+import org.example.duantotnghiep.Entity_quan.chiTietSanPham_Entity;
+import org.example.duantotnghiep.Service_quan.chiTietSanPham_Servidce;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

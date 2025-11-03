@@ -1,4 +1,4 @@
-package org.example.duantotnghiep.DTO;
+package org.example.duantotnghiep.DTO_quan;
 
 import java.util.Date;
 
