@@ -1,9 +1,8 @@
-package org.example.duantotnghiep.Entity;
+package org.example.duantotnghiep.Entity_quan;
 
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.time.LocalDate;
 import java.util.Date;
 
 @NoArgsConstructor

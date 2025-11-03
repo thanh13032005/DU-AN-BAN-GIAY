@@ -1,4 +1,4 @@
-package org.example.duantotnghiep.Entity;
+package org.example.duantotnghiep.Entity_quan;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -38,6 +38,7 @@ public class sanPham_Entity {
 
     @Column(name = "TRANG_THAI")
     private Boolean trangThai;
+
 
 
 }

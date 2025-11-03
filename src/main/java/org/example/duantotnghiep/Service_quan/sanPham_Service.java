@@ -1,8 +1,9 @@
-package org.example.duantotnghiep.Service;
+package org.example.duantotnghiep.Service_quan;
 
-import org.example.duantotnghiep.DTO.sanPham_DTO;
-import org.example.duantotnghiep.Entity.sanPham_Entity;
-import org.example.duantotnghiep.Repository.sanPham_Repository;
+
+import org.example.duantotnghiep.DTO_quan.sanPham_DTO;
+import org.example.duantotnghiep.Entity_quan.sanPham_Entity;
+import org.example.duantotnghiep.Repository_quan.sanPham_Repository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -45,6 +46,11 @@ public class sanPham_Service {
         }
         return null;
     }
+    public List<sanPham_DTO> search(String keyword){
+        return sp_repository.search(keyword);
+    }
+
+
 
 
 }
