@@ -174,12 +174,14 @@ CREATE TABLE CHI_TIET_SAN_PHAM(
     SO_LUONG_TON INT NOT NULL,
     TRANG_THAI BIT NOT NULL,
     NGAY_TAO DATE NOT NULL DEFAULT GETDATE(),
+    THE_LOAI NVARCHAR(255) NULL,
     FOREIGN KEY (ID_SAN_PHAM) REFERENCES SAN_PHAM(ID),
     FOREIGN KEY (ID_SIZE) REFERENCES SIZE(ID),
     FOREIGN KEY (ID_MAU_SAC) REFERENCES MAU_SAC(ID),
     FOREIGN KEY (ID_CHI_TIET_KHUYEN_MAI) REFERENCES CHI_TIET_KHUYEN_MAI(ID)
-)
+);
 GO
+
 
 CREATE TABLE HINH_ANH(
     ID INT IDENTITY(1,1) PRIMARY KEY,
@@ -281,8 +283,9 @@ VALUES
 ----------------------------------------------------
 INSERT INTO XUAT_XU (MA_XUAT_XU, TEN_XUAT_XU, TRANG_THAI) VALUES
 ('XX01', N'Việt Nam', 1),
-('XX02', N'Trung Quốc', 1),
-('XX03', N'Indonesia', 1);
+('XX02', N'Mỹ', 1),
+('XX03', N'Trung Quốc', 1);
+GO
 
 ----------------------------------------------------
 -- 6. THUONG_HIEU
@@ -290,46 +293,59 @@ INSERT INTO XUAT_XU (MA_XUAT_XU, TEN_XUAT_XU, TRANG_THAI) VALUES
 INSERT INTO THUONG_HIEU (MA_THUONG_HIEU, TEN_THUONG_HIEU, TRANG_THAI) VALUES
 ('TH01', N'Nike', 1),
 ('TH02', N'Adidas', 1),
-('TH03', N'Puma', 1);
+('TH03', N'Puma', 1),
+('TH04', N'Bata', 1),
+('TH05', N'Apex', 1);
+GO
 
-----------------------------------------------------
--- 7. SIZE
-----------------------------------------------------
+
 INSERT INTO SIZE (MA_SIZE, TEN_SIZE, TRANG_THAI) VALUES
 ('S38', N'38', 1),
 ('S39', N'39', 1),
 ('S40', N'40', 1),
 ('S41', N'41', 1),
 ('S42', N'42', 1);
+GO
 
-----------------------------------------------------
--- 8. MAU_SAC
-----------------------------------------------------
 INSERT INTO MAU_SAC (MA_MAU, TEN_MAU, TRANG_THAI) VALUES
 ('M01', N'Đen', 1),
 ('M02', N'Trắng', 1),
 ('M03', N'Đỏ', 1),
 ('M04', N'Xanh', 1),
 ('M05', N'Vàng', 1);
+GO
+
 
 ----------------------------------------------------
--- 9. SAN_PHAM
+-- 7. SAN_PHAM
 ----------------------------------------------------
 INSERT INTO SAN_PHAM (ID_XUAT_XU, ID_THUONG_HIEU, MA_SAN_PHAM, TEN_SAN_PHAM, NGAY_TAO, TRANG_THAI) VALUES
-(1, 1, 'SP01', N'Giày Nike Air Zoom', GETDATE(), 1),
-(2, 2, 'SP02', N'Giày Adidas Ultraboost', GETDATE(), 1),
-(3, 3, 'SP03', N'Giày Puma Future', GETDATE(), 1);
+(1, 1, 'SP01', N'Running Sneaker Shoes', GETDATE(), 1),
+(2, 4, 'SP02', N'Leather Mens Slipper', GETDATE(), 1),
+(3, 5, 'SP03', N'Simple Fabric Shoe', GETDATE(), 1),
+(1, 1, 'SP04', N'Air Jordan 7 Retro', GETDATE(), 1),
+(2, 1, 'SP05', N'Nike Air Max 270 SE', GETDATE(), 1),
+(3, 2, 'SP06', N'Adidas Sneakers Shoes', GETDATE(), 1),
+(1, 1, 'SP07', N'Nike Basketball Shoes', GETDATE(), 1),
+(3, 3, 'SP08', N'Simple Fabric Shoe (Puma)', GETDATE(), 1);
+GO
 
 ----------------------------------------------------
 -- 10. CHI_TIET_SAN_PHAM
 ----------------------------------------------------
-INSERT INTO CHI_TIET_SAN_PHAM (ID_SAN_PHAM, ID_SIZE, ID_MAU_SAC, GIA_BAN, SO_LUONG_TON, TRANG_THAI)
+INSERT INTO CHI_TIET_SAN_PHAM (ID_SAN_PHAM, ID_SIZE, ID_MAU_SAC, GIA_BAN, SO_LUONG_TON, TRANG_THAI, THE_LOAI)
 VALUES
-(1, 1, 1, 2500000, 10, 1),
-(1, 2, 2, 2500000, 12, 1),
-(2, 3, 3, 3000000, 8, 1),
-(2, 4, 4, 3000000, 9, 1),
-(3, 5, 5, 2700000, 7, 1);
+(1, 1, 1, 180.85, 20, 1, N'Nam '),
+(2, 2, 2, 190.85, 15, 1, N'Nam '),
+(3, 3, 3, 160.85, 25, 1, N'Nam '),
+(4, 4, 4, 170.85, 10, 1, N' Thể thao'),
+(5, 5, 5, 120.85, 18, 1, N'Nữ'),
+(6, 1, 2, 100.85, 22, 1, N'Nữ'),
+(7, 2, 3, 120.85, 17, 1, N'Thể thao'),
+(8, 3, 1, 100.85, 30, 1, N'Nữ');
+GO
+
+
 
 ----------------------------------------------------
 -- 11. HOA_DON
@@ -389,6 +405,19 @@ VALUES
 (4, 'CTKM05', 500000, 1),
 (5, 'CTKM06', 350000, 1);
 
+-- HÌNH ẢNH
+INSERT INTO HINH_ANH (ID_CHI_TIET_SAN_PHAM, MA_ANH, TEN_ANH, URL, TRANG_THAI)
+VALUES
+(1, 'IMG01', N'Running Sneaker Shoes', N'/images/products/product1.jpg', 1),
+(2, 'IMG02', N'Leather Mens Slipper', N'/images/products/product2.jpg', 1),
+(3, 'IMG03', N'Simple Fabric Shoe', N'/images/products/product3.jpg', 1),
+(4, 'IMG04', N'Air Jordan 7 Retro', N'/images/products/product4.jpg', 1),
+(5, 'IMG05', N'Nike Air Max 270 SE', N'/images/products/product5.jpg', 1),
+(6, 'IMG06', N'Adidas Sneakers Shoes', N'/images/products/product6.jpg', 1),
+(7, 'IMG07', N'Nike Basketball Shoes', N'/images/products/product7.jpg', 1),
+(8, 'IMG08', N'Simple Fabric Shoe (Puma)', N'/images/products/product8.jpg', 1);
+GO
+
 
 SELECT * FROM CHUC_VU;
 SELECT * FROM NHAN_VIEN;
@@ -397,7 +426,7 @@ SELECT * FROM DIA_CHI;
 SELECT * FROM VOUCHER;
 SELECT * FROM KHUYEN_MAI;
 SELECT * FROM CHI_TIET_KHUYEN_MAI;
-SELECT * FROM XUAT_XU;
+SELECT * FROM HINH_ANH;
 SELECT * FROM THUONG_HIEU;
 SELECT * FROM SAN_PHAM;
 SELECT * FROM SIZE;
