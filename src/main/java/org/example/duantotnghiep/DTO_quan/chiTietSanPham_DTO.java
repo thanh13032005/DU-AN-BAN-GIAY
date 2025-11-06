@@ -12,4 +12,5 @@ public interface chiTietSanPham_DTO {
     Integer getSoLuongTon();
     Boolean getTrangThai();
     Date getNgayTao();
+    String getTheLoai();
 }
