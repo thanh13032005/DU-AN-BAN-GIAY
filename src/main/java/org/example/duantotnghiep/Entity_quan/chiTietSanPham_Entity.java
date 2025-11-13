@@ -3,6 +3,7 @@ package org.example.duantotnghiep.Entity_quan;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 @NoArgsConstructor
@@ -32,7 +33,7 @@ public class chiTietSanPham_Entity {
     private Integer idChiTietKhuyenMai;
 
     @Column(name = "GIA_BAN")
-    private Float giaBan;
+    private BigDecimal giaBan;
 
     @Column(name = "SO_LUONG_TON")
     private Integer soLuongTon;

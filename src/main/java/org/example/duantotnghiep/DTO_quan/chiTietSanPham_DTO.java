@@ -1,5 +1,6 @@
 package org.example.duantotnghiep.DTO_quan;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 public interface chiTietSanPham_DTO {
@@ -8,7 +9,7 @@ public interface chiTietSanPham_DTO {
     Integer getIdSize();
     Integer getIdMauSac();
     Integer getIdChiTietKhuyenMai();
-    Float getGiaBan();
+    BigDecimal getGiaBan();
     Integer getSoLuongTon();
     Boolean getTrangThai();
     Date getNgayTao();
