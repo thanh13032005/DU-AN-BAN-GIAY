@@ -39,8 +39,10 @@ public class chiTietSanPham_Entity {
     @Column(name = "TRANG_THAI")
     private Boolean trangThai;
 
+    @Temporal(TemporalType.DATE)
     @Column(name = "NGAY_TAO")
     private Date ngayTao;
+
 
     @Column(name = "THE_LOAI")
     private String theLoai;
