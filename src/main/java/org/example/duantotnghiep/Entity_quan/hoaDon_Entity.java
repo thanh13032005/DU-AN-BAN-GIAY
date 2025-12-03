@@ -49,5 +49,5 @@ public class hoaDon_Entity {
     private BigDecimal tongTienGiam;
 
     @Column(name = "TRANG_THAI")
-    private Boolean trangThai; // 1: đã thanh toán, 0: chưa
+    private Integer trangThai;
 }

@@ -11,13 +11,13 @@ public interface sanPham_Repository extends JpaRepository<sanPham_Entity, Intege
 
     // Lấy tất cả sản phẩm
     @Query(value = """
-        SELECT ID ,ID_XUAT_XU , ID_THUONG_HIEU, MA_SAN_PHAM ,TEN_SAN_PHAM, NGAY_TAO , TRANG_THAI
+        SELECT ID ,ID_XUAT_XU , ID_THUONG_HIEU,ID_CHI_TIET_KHUYEN_MAI, MA_SAN_PHAM ,TEN_SAN_PHAM, NGAY_TAO , TRANG_THAI
         FROM SAN_PHAM
         """, nativeQuery = true)
     List<sanPham_DTO> getAllSanPham();
 
     @Query(value = """
-    SELECT ID ,ID_XUAT_XU , ID_THUONG_HIEU, MA_SAN_PHAM ,TEN_SAN_PHAM, NGAY_TAO , TRANG_THAI
+    SELECT ID ,ID_XUAT_XU , ID_THUONG_HIEU,ID_CHI_TIET_KHUYEN_MAI, MA_SAN_PHAM ,TEN_SAN_PHAM, NGAY_TAO , TRANG_THAI
     FROM SAN_PHAM
     WHERE TEN_SAN_PHAM LIKE %?1% OR MA_SAN_PHAM LIKE %?1%
 """, nativeQuery = true)

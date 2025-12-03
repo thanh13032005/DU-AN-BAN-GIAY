@@ -43,7 +43,6 @@ public class chiTietSanPham_Servidce {
         existing.setIdSanPham(chiTietSanPham_entity.getIdSanPham());
         existing.setIdSize(chiTietSanPham_entity.getIdSize());
         existing.setIdMauSac(chiTietSanPham_entity.getIdMauSac());
-        existing.setIdChiTietKhuyenMai(chiTietSanPham_entity.getIdChiTietKhuyenMai());
         existing.setGiaBan(chiTietSanPham_entity.getGiaBan());
         existing.setSoLuongTon(chiTietSanPham_entity.getSoLuongTon());
         existing.setTrangThai(chiTietSanPham_entity.getTrangThai());

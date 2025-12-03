@@ -11,5 +11,5 @@ public interface hoaDon_DTO {
     String getSoDienThoai();
     Date getNgayTao();
     BigDecimal getTongTien();
-    Boolean getTrangThai();
+    Integer getTrangThai();
 }
