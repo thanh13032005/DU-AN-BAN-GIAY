@@ -8,7 +8,6 @@ public interface chiTietSanPham_DTO {
     Integer getIdSanPham();
     Integer getIdSize();
     Integer getIdMauSac();
-    Integer getIdChiTietKhuyenMai();
     BigDecimal getGiaBan();
     Integer getSoLuongTon();
     Boolean getTrangThai();

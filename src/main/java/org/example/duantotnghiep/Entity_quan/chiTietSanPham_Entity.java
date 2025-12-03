@@ -29,8 +29,6 @@ public class chiTietSanPham_Entity {
     @Column(name = "ID_MAU_SAC")
     private Integer idMauSac;
 
-    @Column(name = "ID_CHI_TIET_KHUYEN_MAI")
-    private Integer idChiTietKhuyenMai;
 
     @Column(name = "GIA_BAN")
     private BigDecimal giaBan;

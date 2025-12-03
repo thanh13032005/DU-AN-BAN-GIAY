@@ -26,6 +26,9 @@ public class sanPham_Entity {
     @Column(name = "ID_THUONG_HIEU")
     private Integer idThuongHieu;
 
+    @Column(name = "ID_CHI_TIET_KHUYEN_MAI")
+    private Integer idChiTietKhuyenMai;
+
 
     @Column(name = "MA_SAN_PHAM")
     private String maSanPham;
@@ -37,8 +40,7 @@ public class sanPham_Entity {
     private Date ngayTao;
 
     @Column(name = "TRANG_THAI")
-    private Boolean trangThai;
-
+    private Integer trangThai;
 
 
 }

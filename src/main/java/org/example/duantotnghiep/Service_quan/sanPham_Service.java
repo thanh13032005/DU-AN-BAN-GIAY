@@ -38,6 +38,7 @@ public class sanPham_Service {
             sanPham_Entity existing = optional.get();
             existing.setIdThuongHieu(sanPhamUpdate.getIdThuongHieu());
             existing.setIdXuatXu(sanPhamUpdate.getIdXuatXu());
+            existing.setIdChiTietKhuyenMai(sanPhamUpdate.getIdChiTietKhuyenMai());
             existing.setMaSanPham(sanPhamUpdate.getMaSanPham());
             existing.setTenSanPham(sanPhamUpdate.getTenSanPham());
             existing.setNgayTao(sanPhamUpdate.getNgayTao());

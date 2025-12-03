@@ -6,6 +6,7 @@ public interface sanPham_DTO {
     Integer  getid();
     Integer getIdXuatXu();
     Integer getIdThuongHieu();
+    Integer getIdChiTietKhuyenMai();
     String getmaSanPham();
     String gettenSanPham();
     Date getngayTao();
