@@ -14,3 +14,4 @@ public interface chiTietSanPham_DTO {
     Date getNgayTao();
     String getTheLoai();
 }
+//

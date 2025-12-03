@@ -1,7 +1,7 @@
 package org.example.duantotnghiep.Repository_quan;
 
 import org.example.duantotnghiep.DTO_quan.hoaDon_DTO;
-import org.example.duantotnghiep.DTO_quan.sanPham_DTO;
+
 import org.example.duantotnghiep.Entity_quan.hoaDon_Entity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
