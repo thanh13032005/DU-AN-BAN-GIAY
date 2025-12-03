@@ -9,7 +9,7 @@ import java.util.List;
 public interface chiTietSanPham_Repository extends JpaRepository<chiTietSanPham_Entity, Integer> {
 
     @Query(value = """
-            SELECT * FROM CHI_TIET_SAN_PHAM
+            SELECT ID, ID_SAN_PHAM,ID_SIZE,ID_MAU_SAC,GIA_BAN,SO_LUONG_TON,TRANG_THAI,NGAY_TAO,THE_LOAI FROM CHI_TIET_SAN_PHAM
         """, nativeQuery = true)
     List<chiTietSanPham_DTO> getAllChiTietSanPham();
 
