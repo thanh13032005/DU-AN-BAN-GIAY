@@ -40,7 +40,7 @@ public class sanPham_Entity {
     private Date ngayTao;
 
     @Column(name = "TRANG_THAI")
-    private Integer trangThai;
+    private Boolean trangThai;
 
 
 }

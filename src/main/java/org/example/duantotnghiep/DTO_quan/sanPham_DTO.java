@@ -3,7 +3,7 @@ package org.example.duantotnghiep.DTO_quan;
 import java.util.Date;
 
 public interface sanPham_DTO {
-    Integer  getid();
+    Integer getid();
     Integer getIdXuatXu();
     Integer getIdThuongHieu();
     Integer getIdChiTietKhuyenMai();
@@ -11,5 +11,6 @@ public interface sanPham_DTO {
     String gettenSanPham();
     Date getngayTao();
     Boolean getTrangThai();
+
 
 }

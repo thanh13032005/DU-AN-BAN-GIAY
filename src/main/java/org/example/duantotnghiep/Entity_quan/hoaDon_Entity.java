@@ -50,4 +50,7 @@ public class hoaDon_Entity {
 
     @Column(name = "TRANG_THAI")
     private Integer trangThai;
+
+
+
 }
