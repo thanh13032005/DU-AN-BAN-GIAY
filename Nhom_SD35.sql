@@ -130,21 +130,22 @@ CREATE TABLE THUONG_HIEU(
 )
 GO
 
+-- ======================= SAN_PHAM =======================
 CREATE TABLE SAN_PHAM(
     ID INT IDENTITY(1,1) PRIMARY KEY,
     ID_XUAT_XU INT NOT NULL,
     ID_THUONG_HIEU INT NOT NULL,
-	ID_CHI_TIET_KHUYEN_MAI INT NULL,
+    ID_CHI_TIET_KHUYEN_MAI INT NULL,
     MA_SAN_PHAM NVARCHAR(255) NOT NULL UNIQUE,
     TEN_SAN_PHAM NVARCHAR(255) NOT NULL,
     NGAY_TAO DATE NOT NULL,
     TRANG_THAI BIT NOT NULL,
     FOREIGN KEY (ID_XUAT_XU) REFERENCES XUAT_XU(ID),
-
     FOREIGN KEY (ID_THUONG_HIEU) REFERENCES THUONG_HIEU(ID),
-	FOREIGN KEY (ID_CHI_TIET_KHUYEN_MAI) REFERENCES CHI_TIET_KHUYEN_MAI(ID)
+    FOREIGN KEY (ID_CHI_TIET_KHUYEN_MAI) REFERENCES CHI_TIET_KHUYEN_MAI(ID)
+);
+GO
 
-)
 GO
 -- ======================= SIZE & MÀU =======================
 
@@ -168,22 +169,23 @@ GO
 
 -- ======================= CHI TIẾT SẢN PHẨM =======================
 
+-- ======================= CHI_TIET_SAN_PHAM =======================
 CREATE TABLE CHI_TIET_SAN_PHAM(
     ID INT IDENTITY(1,1) PRIMARY KEY,
     ID_SAN_PHAM INT NOT NULL,
     ID_SIZE INT NOT NULL,
     ID_MAU_SAC INT NOT NULL,
-
     GIA_BAN DECIMAL(18,2) NOT NULL,
     SO_LUONG_TON INT NOT NULL,
     TRANG_THAI BIT NOT NULL,
     NGAY_TAO DATE NOT NULL DEFAULT GETDATE(),
     THE_LOAI NVARCHAR(255) NULL,
-    FOREIGN KEY (ID_SAN_PHAM) REFERENCES SAN_PHAM(ID),
+    FOREIGN KEY (ID_SAN_PHAM) REFERENCES SAN_PHAM(ID) ,
     FOREIGN KEY (ID_SIZE) REFERENCES SIZE(ID),
-    FOREIGN KEY (ID_MAU_SAC) REFERENCES MAU_SAC(ID),
+    FOREIGN KEY (ID_MAU_SAC) REFERENCES MAU_SAC(ID)
 );
 GO
+
 
 
 CREATE TABLE HINH_ANH(
@@ -323,14 +325,7 @@ GO
 -- 7. SAN_PHAM
 ----------------------------------------------------
 INSERT INTO SAN_PHAM (ID_XUAT_XU, ID_THUONG_HIEU, MA_SAN_PHAM, TEN_SAN_PHAM, NGAY_TAO, TRANG_THAI) VALUES
-(1, 1, 'SP01', N'Running Sneaker Shoes', GETDATE(), 1),
-(2, 4, 'SP02', N'Leather Mens Slipper', GETDATE(), 1),
-(3, 5, 'SP03', N'Simple Fabric Shoe', GETDATE(), 1),
-(1, 1, 'SP04', N'Air Jordan 7 Retro', GETDATE(), 1),
-(2, 1, 'SP05', N'Nike Air Max 270 SE', GETDATE(), 1),
-(3, 2, 'SP06', N'Adidas Sneakers Shoes', GETDATE(), 1),
-(1, 1, 'SP07', N'Nike Basketball Shoes', GETDATE(), 1),
-(3, 3, 'SP08', N'Simple Fabric Shoe (Puma)', GETDATE(), 1);
+(1, 1, 'SP01', N'Running Sneaker Shoes', GETDATE(), 1);
 GO
 
 ----------------------------------------------------
@@ -338,16 +333,14 @@ GO
 ----------------------------------------------------
 INSERT INTO CHI_TIET_SAN_PHAM (ID_SAN_PHAM, ID_SIZE, ID_MAU_SAC, GIA_BAN, SO_LUONG_TON, TRANG_THAI, THE_LOAI)
 VALUES
-(1, 1, 1, 180.85, 20, 1, N'Nam '),
-(2, 2, 2, 190.85, 15, 1, N'Nam '),
-(3, 3, 3, 160.85, 25, 1, N'Nam '),
-(4, 4, 4, 170.85, 10, 1, N' Thể thao'),
-(5, 5, 5, 120.85, 18, 1, N'Nữ'),
-(6, 1, 2, 100.85, 22, 1, N'Nữ'),
-(7, 2, 3, 120.85, 17, 1, N'Thể thao'),
-(8, 3, 1, 100.85, 30, 1, N'Nữ');
+(1, 1, 1, 180.85, 20, 1, N'Nam ');
 GO
 
+-- 14. VOUCHER
+----------------------------------------------------
+INSERT INTO VOUCHER (MA_VOUCHER, TEN_VOUCHER, GIA_TRI, KIEU_GIAM, NGAY_BAT_DAU, NGAY_KET_THUC, TRANG_THAI)
+VALUES
+('VC01', N'Giảm 10%', 10, N'%', '2025-01-01', '2025-12-31', 1);
 
 
 ----------------------------------------------------
@@ -355,79 +348,53 @@ GO
 ----------------------------------------------------
 INSERT INTO HOA_DON (ID_KHACH_HANG, ID_NHAN_VIEN, MA_HOA_DON, TEN_KHACH_HANG, DIA_CHI, SO_DIEN_THOAI, TRANG_THAI)
 VALUES
-(1, 2, 'HD01', N'Trần Quốc D', N'Hà Nội', '0911111111', 1),
-(2, 3, 'HD02', N'Hoàng Thị E', N'HCM', '0922222222', 1);
+(1, 2, 'HD01', N'Trần Quốc D', N'Hà Nội', '0911111111', 1);
 
 ----------------------------------------------------
 -- 12. HOA_DON_CHI_TIET
 ----------------------------------------------------
 INSERT INTO HOA_DON_CHI_TIET (ID_HOA_DON, ID_CHI_TIET_SAN_PHAM, SO_LUONG_MUA, GIA_GOC, GIA_BAN, TRANG_THAI)
 VALUES
-(1, 1, 1, 2500000, 2500000, 1),
-(1, 2, 1, 2500000, 2500000, 1),
-(2, 3, 2, 3000000, 3000000, 1);
+(1, 1, 1, 2500000, 2500000, 1);
 
 ----------------------------------------------------
 -- 13. THANH_TOAN
 ----------------------------------------------------
 INSERT INTO THANH_TOAN (ID_HOA_DON, MA_THANH_TOAN, HINH_THANH_TOAN, SO_TIEN_THANH_TOAN, TRANG_THAI)
 VALUES
-(1, 'TT01', 1, 5000000, 1),
-(2, 'TT02', 0, 6000000, 1);
+(1, 'TT01', 1, 5000000, 1);
 ----------------------------------------------------
--- 14. VOUCHER
-----------------------------------------------------
-INSERT INTO VOUCHER (MA_VOUCHER, TEN_VOUCHER, GIA_TRI, KIEU_GIAM, NGAY_BAT_DAU, NGAY_KET_THUC, TRANG_THAI)
-VALUES
-('VC01', N'Giảm 10%', 10, N'%', '2025-01-01', '2025-12-31', 1),
-('VC02', N'Giảm 100k', 100000, N'Tiền', '2025-02-01', '2025-12-31', 1),
-('VC03', N'Giảm 15%', 15, N'%', '2025-03-01', '2025-12-31', 1),
-('VC04', N'Giảm 50k', 50000, N'Tiền', '2025-04-01', '2025-12-31', 1),
-('VC05', N'Giảm 20%', 20, N'%', '2025-05-01', '2025-12-31', 1);
 
 ----------------------------------------------------
 -- 15. KHUYEN_MAI
 ----------------------------------------------------
 INSERT INTO KHUYEN_MAI (MA_CHUONG_TRINH, TEN_CHUONG_TRINH, PHAN_TRAM_GIAM, NGAY_BAT_DAU, NGAY_KET_THUC, TRANG_THAI, MO_TA)
 VALUES
-('KM01', N'Khuyến mãi Tết', 0.10, '2025-01-15', '2025-02-15', 1, N'Giảm giá toàn bộ sản phẩm trong dịp Tết'),
-('KM02', N'Giảm giá Hè', 0.15, '2025-06-01', '2025-07-31', 1, N'Chương trình ưu đãi mùa hè'),
-('KM03', N'Back to School', 0.20, '2025-08-01', '2025-09-30', 1, N'Khuyến mãi mùa tựu trường'),
-('KM04', N'Giảm sốc 11/11', 0.30, '2025-11-01', '2025-11-11', 1, N'Khuyến mãi lớn ngày hội mua sắm'),
-('KM05', N'Noel Sale', 0.25, '2025-12-01', '2025-12-31', 1, N'Ưu đãi mùa Giáng sinh');
+('KM01', N'Khuyến mãi Tết', 0.10, '2025-01-15', '2025-02-15', 1, N'Giảm giá toàn bộ sản phẩm trong dịp Tết');
 
 ----------------------------------------------------
 -- 16. CHI_TIET_KHUYEN_MAI
 ----------------------------------------------------
 INSERT INTO CHI_TIET_KHUYEN_MAI (ID_KHUYEN_MAI, MA_CHI_TIET_KHUYEN_MAI, SO_TIEN_GIAM, TRANG_THAI)
 VALUES
-(1, 'CTKM01', 250000, 1),
-(1, 'CTKM02', 150000, 1),
-(2, 'CTKM03', 300000, 1),
-(3, 'CTKM04', 200000, 1),
-(4, 'CTKM05', 500000, 1),
-(5, 'CTKM06', 350000, 1);
+(1, 'CTKM01', 250000, 1);
 
 -- HÌNH ẢNH
 INSERT INTO HINH_ANH (ID_CHI_TIET_SAN_PHAM, MA_ANH, TEN_ANH, URL, TRANG_THAI)
 VALUES
-(1, 'IMG01', N'Running Sneaker Shoes', N'/images/products/product1.jpg', 1),
-(2, 'IMG02', N'Leather Mens Slipper', N'/images/products/product2.jpg', 1),
-(3, 'IMG03', N'Simple Fabric Shoe', N'/images/products/product3.jpg', 1),
-(4, 'IMG04', N'Air Jordan 7 Retro', N'/images/products/product4.jpg', 1),
-(5, 'IMG05', N'Nike Air Max 270 SE', N'/images/products/product5.jpg', 1),
-(6, 'IMG06', N'Adidas Sneakers Shoes', N'/images/products/product6.jpg', 1),
-(7, 'IMG07', N'Nike Basketball Shoes', N'/images/products/product7.jpg', 1),
-(8, 'IMG08', N'Simple Fabric Shoe (Puma)', N'/images/products/product8.jpg', 1);
+(1, 'IMG01', N'Running Sneaker Shoes', N'/images/products/product1.jpg', 1);
 GO
 
 
 INSERT INTO THANH_TOAN 
 (ID_HOA_DON, MA_THANH_TOAN, HINH_THANH_TOAN, SO_TIEN_THANH_TOAN, TRANG_THAI, NGAY_THANH_TOAN, GHI_CHU)
 VALUES
-(1, 'TT03', 1, 2500000, 1, '2025-01-10 14:30:45', N'Thanh toán lúc chiều'),
-(2, 'TT04', 0, 3000000, 1, '2025-01-11 09:10:20', N'Thanh toán buổi sáng');
+(1, 'TT03', 1, 2500000, 1, '2025-01-10 14:30:45', N'Thanh toán lúc chiều');
 
+INSERT INTO CHI_TIET_SAN_PHAM
+(ID_SAN_PHAM, ID_SIZE, ID_MAU_SAC, GIA_BAN, SO_LUONG_TON, TRANG_THAI, NGAY_TAO, THE_LOAI)
+VALUES
+(1, 1, 1, 150000, 10, 1, GETDATE(), N'Giày Thể Thao');
 
 
 SELECT * FROM CHUC_VU;
@@ -447,3 +414,4 @@ SELECT * FROM HINH_ANH;
 SELECT * FROM HOA_DON;
 SELECT * FROM HOA_DON_CHI_TIET;
 SELECT * FROM THANH_TOAN;
+
